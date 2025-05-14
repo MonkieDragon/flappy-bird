@@ -89,11 +89,11 @@
 
   <!-- Handle fullscreen on first interaction -->
   <script>
-    const canvas = document.getElementById("canvas");
+    const canv = document.getElementById("canvas");
     const overlay = document.getElementById("start-overlay");
 
     const goFullscreen = () => {
-      canvas.requestFullscreen?.().catch(() => {});
+      canv.requestFullscreen?.().catch(() => {});
       overlay.style.display = "none";
       document.removeEventListener("touchstart", goFullscreen);
       document.removeEventListener("click", goFullscreen);
