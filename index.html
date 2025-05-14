@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta charset="utf-8" />
   <meta http-equiv="pragma" content="no-cache" />
-  <title>Created with GameMaker</title>
+  <title>Flappy Bird</title>
 
   <style>
     html, body {
@@ -50,7 +50,6 @@
       border: 0;
     }
 
-    /* Fullscreen start overlay */
     #start-overlay {
       position: absolute;
       width: 100%;
@@ -81,16 +80,27 @@
   <!-- Game script -->
   <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=1164374630"></script>
 
-  <!-- Start game on tap -->
+  <!-- Automatically start game on load -->
+  <script>
+    window.onload = function () {
+      GameMaker_Init();
+    };
+  </script>
+
+  <!-- Handle fullscreen on first interaction -->
   <script>
     const canvas = document.getElementById("canvas");
     const overlay = document.getElementById("start-overlay");
 
-    overlay.addEventListener("touchstart", () => {
+    const goFullscreen = () => {
       canvas.requestFullscreen?.().catch(() => {});
       overlay.style.display = "none";
-      GameMaker_Init();
-    }, { passive: false });
+      document.removeEventListener("touchstart", goFullscreen);
+      document.removeEventListener("click", goFullscreen);
+    };
+
+    document.addEventListener("touchstart", goFullscreen, { passive: false });
+    document.addEventListener("click", goFullscreen, { passive: false });
   </script>
 </body>
 </html>
