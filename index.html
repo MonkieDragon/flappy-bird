@@ -119,10 +119,10 @@
         <!-- Builtin injector for injecting google analytics code -->
         
         <script>
-        const canvas = document.getElementById("canvas");
-        canvas.addEventListener("touchstart", e => {
+        const canv = document.getElementById("canvas");
+        canv.addEventListener("touchstart", e => {
             e.preventDefault();
-            canvas.requestFullscreen?.().catch(() => {});
+            canv.requestFullscreen?.().catch(() => {});
         }, { passive: false });
         </script>
 
