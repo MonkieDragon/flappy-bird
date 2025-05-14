@@ -1,106 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta charset="utf-8" />
-  <meta http-equiv="pragma" content="no-cache" />
-  <title>Flappy Bird</title>
+    <!-- Custom PreHead code is injected here -->
+    
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background: white;
-      color: #cccccc;
-      touch-action: none;
-      -ms-touch-action: none;
-      -webkit-user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      overflow: hidden;
-    }
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta charset="utf-8"/>
 
-    canvas {
-      image-rendering: optimizeSpeed;
-      -webkit-interpolation-mode: nearest-neighbor;
-      touch-action: none;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      display: block;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+        <!-- Builtin injector for disabling cache -->
+        <meta http-equiv="pragma" content="no-cache"/>
 
-    :-webkit-full-screen #canvas,
-    :-webkit-full-screen {
-      width: 100%;
-      height: 100%;
-    }
+        <!-- Set the title bar of the page -->
+        <title>Created with GameMaker</title>
 
-    div.gm4html5_div_class {
-      margin: 0;
-      padding: 0;
-      border: 0;
-    }
+        <!-- Custom PreStyle code is injected here -->
+        
 
-    #start-overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: black;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      font-size: 24px;
-      text-align: center;
-      cursor: pointer;
-    }
-  </style>
-</head>
+        <!-- Set the background colour of the document -->
+        <style>
+            html, body {
+                touch-action: none;
+                -ms-touch-action: none;
+                -webkit-user-select: none;
+                -webkit-tap-highlight-color: transparent;
+            }
 
-<body>
-  <div class="gm4html5_div_class" id="gm4html5_div_id">
-    <canvas id="canvas" width="288" height="516">
-      <p>Your browser doesn't support HTML5 canvas.</p>
-    </canvas>
-  </div>
+            body {
+                background: white;
+                color: #cccccc;
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
 
-  <!-- Tap to start overlay -->
-  <div id="start-overlay">Tap to Start</div>
+            canvas {
+                image-rendering: optimizeSpeed;
+                -webkit-interpolation-mode: nearest-neighbor;
+                -ms-touch-action: none;
+                touch-action: none;
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
+            :-webkit-full-screen #canvas {
+                width: 100%;
+                height: 100%;
+            }
+            :-webkit-full-screen {
+                width: 100%;
+                height: 100%;
+            }
+            
+            /* Custom Runner Styles */
+            div.gm4html5_div_class {
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
+            div.gm4html5_login {
+                padding: 20px;
+                position: absolute;
+                border: solid 2px #000000;
+                background-color: #404040;
+                color:#00ff00;
+                border-radius: 15px;
+                box-shadow: #101010 20px 20px 40px;
+            }
+            div.gm4html5_cancel_button {
+                float: right;
+            }
+            div.gm4html5_login_button {
+                float: left;
+            }
+            div.gm4html5_login_header {
+                text-align: center;
+            }
+            /* END - Custom Runner Styles */
+            
+        </style>
 
-  <!-- Game script -->
-  <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=1164374630"></script>
+        <!-- Custom PostStyle code is injected here -->
+        
 
-  <!-- Automatically start game on load -->
-  <script>
-    window.onload = function () {
-      GameMaker_Init();
-    };
-  </script>
+        <!-- Builtin injector for injecting flurry analytics code -->
+        
+    </head>
 
-  <!-- Handle fullscreen on first interaction -->
-  <script>
-    const canv = document.getElementById("canvas");
-    const overlay = document.getElementById("start-overlay");
+    <!-- Custom PostHead code is injected here -->
+    
 
-    const goFullscreen = () => {
-      canv.requestFullscreen?.().catch(() => {});
-      overlay.style.display = "none";
-      document.removeEventListener("touchstart", goFullscreen);
-      document.removeEventListener("click", goFullscreen);
-    };
+    <!-- Custom PreBody code is injected here -->
+    
 
-    document.addEventListener("touchstart", goFullscreen, { passive: false });
-    document.addEventListener("click", goFullscreen, { passive: false });
-  </script>
-</body>
+    <body>
+        <div class="gm4html5_div_class" id="gm4html5_div_id">
+            
+            <!-- Builtin injector for splash screen -->
+            
+
+            <!-- Create the canvas element the game draws to -->
+            <canvas id="canvas" width="288" height="516" style="position: absolute; top: 50%; left: 50%; bottom: -50%; right: -50%; transform: translate(-50%, -50%);">
+                <p>Your browser doesn't support HTML5 canvas.</p>
+            </canvas>
+        </div>
+
+        <!-- Run the game code -->
+        <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=1164374630"></script>
+
+        <!-- Builtin injector for injecting runner path -->
+        
+
+        <script>window.onload = GameMaker_Init;</script>
+
+        <!-- Builtin injector for injecting google analytics code -->
+        
+        <script>
+        const canv = document.getElementById("canvas");
+        canv.addEventListener("touchstart", e => {
+            e.preventDefault();
+            canv.requestFullscreen?.().catch(() => {});
+        }, { passive: false });
+        </script>
+
+    </body>
+
+    <!-- Custom PostBody code is injected here -->
+    
 </html>
