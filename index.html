@@ -7,7 +7,7 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta charset="utf-8"/>
 
@@ -28,6 +28,13 @@
                 margin: 0px;
                 padding: 0px;
                 border: 0px;
+
+                /* chatgpt */
+                overflow: hidden;
+                touch-action: none;
+                -ms-touch-action: none;
+                -webkit-user-select: none;
+                -webkit-tap-highlight-color: transparent;
             }
 
             canvas {
@@ -38,6 +45,10 @@
                 margin: 0px;
                 padding: 0px;
                 border: 0px;
+
+                /* chatgpt */
+                display: block;
+                touch-action: none;
             }
             :-webkit-full-screen #canvas {
                 width: 100%;
@@ -102,7 +113,7 @@
         </div>
 
         <!-- Run the game code -->
-        <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=1990237891"></script>
+        <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=2007889768"></script>
 
         <!-- Builtin injector for injecting runner path -->
         
@@ -111,7 +122,17 @@
 
         <!-- Builtin injector for injecting google analytics code -->
         
+        <script>
+            const canvas = document.querySelector('canvas');
+            if (canvas) {
+              canvas.style.touchAction = 'none'; // Prevents browser interpreting swipes
+              canvas.addEventListener('touchstart', e => {
+                e.preventDefault(); // Prevent scrolling or zooming on touch
+              }, { passive: false });
+            }
+          </script>
 
+           <!-- Chatgpt suggestion to fix input issues -->
     </body>
 
     <!-- Custom PostBody code is injected here -->
