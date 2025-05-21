@@ -119,9 +119,41 @@
         <script type="text/javascript" src="html5game/Flappy Bird.js?cachebust=1164374630"></script>
 
         <!-- Builtin injector for injecting runner path -->
-        
 
-        <script>window.onload = GameMaker_Init;</script>
+        <script>
+  window.onload = () => {
+    const canvas = document.getElementById("canvas");
+
+    if (!canvas) {
+      console.warn("❌ Canvas not found");
+      return;
+    }
+
+    const enterFullscreen = () => {
+      const el = document.documentElement; // You can change to `canvas` to test both
+      if (el.requestFullscreen) {
+        el.requestFullscreen().then(() => {
+          console.log("✅ Fullscreen entered");
+        }).catch(err => {
+          console.warn("❌ Fullscreen failed:", err);
+        });
+      } else {
+        console.warn("❌ Fullscreen API not supported");
+      }
+    };
+
+    canvas.addEventListener("touchstart", e => {
+      e.preventDefault();
+      console.log("📱 Touch detected");
+      enterFullscreen();
+    }, { passive: false });
+  };
+
+GameMaker_Init;  
+</script>
+
+
+<!--         <script>window.onload = GameMaker_Init;</script> -->
 
         <!-- Builtin injector for injecting google analytics code -->
         
