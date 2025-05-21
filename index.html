@@ -155,14 +155,49 @@
 
         <!-- Builtin injector for injecting google analytics code -->
         
-
         <script>
+          window.onload = () => {
+            const canvas = document.getElementById("canvas");
+            if (!canvas) return;
+        
+            let hasEnteredFullscreen = false;
+        
+            const enterFullscreen = () => {
+              const el = document.documentElement;
+              if (el.requestFullscreen) {
+                el.requestFullscreen()
+                  .then(() => {
+                    console.log("✅ Entered fullscreen");
+                    hasEnteredFullscreen = true;
+                  })
+                  .catch(err => console.warn("❌ Fullscreen error", err));
+              }
+            };
+        
+            // Intercept the very first tap ONLY for fullscreen
+            const handleFirstTouch = (e) => {
+              e.preventDefault();
+              if (!hasEnteredFullscreen) {
+                enterFullscreen();
+                // Delay game input just long enough to avoid issues
+                setTimeout(() => {
+                  canvas.removeEventListener("touchstart", handleFirstTouch);
+                  // Let future touches go to game logic as normal
+                }, 300); // slight buffer to let fullscreen apply
+              }
+            };
+        
+            canvas.addEventListener("touchstart", handleFirstTouch, { passive: false });
+          };
+        </script>
+
+<!--         <script>
         const canv = document.getElementById("canvas");
         canv.addEventListener("touchstart", e => {
             e.preventDefault();
             canv.requestFullscreen?.().catch(() => {});
         }, { passive: false });
-        </script>
+        </script> -->
         
     </body>
 
