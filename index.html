@@ -108,7 +108,25 @@
             
             <!-- Builtin injector for splash screen -->
             
-
+            <!-- Tap to Start Overlay -->
+            <div id="start-overlay" style="
+              position: fixed;
+              z-index: 1000;
+              background: black;
+              color: white;
+              font-size: 24px;
+              font-family: sans-serif;
+              width: 100vw;
+              height: 100vh;
+              top: 0;
+              left: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+            ">
+              Tap to Start
+            </div>
             <!-- Create the canvas element the game draws to -->
             <canvas id="canvas">
                 <p>Your browser doesn't support HTML5 canvas.</p>
@@ -120,75 +138,38 @@
 
         <!-- Builtin injector for injecting runner path -->
 
-        <script>
-  window.onload = () => {
-    const canvas = document.getElementById("canvas");
-
-    if (!canvas) {
-      console.warn("❌ Canvas not found");
-      return;
-    }
-
-    const enterFullscreen = () => {
-      const el = document.documentElement; // You can change to `canvas` to test both
-      if (el.requestFullscreen) {
-        el.requestFullscreen().then(() => {
-          console.log("✅ Fullscreen entered");
-        }).catch(err => {
-          console.warn("❌ Fullscreen failed:", err);
-        });
-      } else {
-        console.warn("❌ Fullscreen API not supported");
-      }
-    };
-
-    canvas.addEventListener("touchstart", e => {
-      e.preventDefault();
-      console.log("📱 Touch detected");
-      enterFullscreen();
-    }, { passive: false });
-  };
-</script>
-
-
         <script>window.onload = GameMaker_Init;</script>
 
         <!-- Builtin injector for injecting google analytics code -->
         
         <script>
-          // window.onload = () => {
-            const canvas = document.getElementById("canvas");
-            if (!canvas) return;
-        
-            let hasEnteredFullscreen = false;
+            const overlay = document.getElementById("start-overlay");
+            const canv = document.getElementById("canvas");
         
             const enterFullscreen = () => {
               const el = document.documentElement;
               if (el.requestFullscreen) {
-                el.requestFullscreen()
-                  .then(() => {
-                    console.log("✅ Entered fullscreen");
-                    hasEnteredFullscreen = true;
-                  })
-                  .catch(err => console.warn("❌ Fullscreen error", err));
+                el.requestFullscreen().catch((err) => {
+                  console.warn("Fullscreen error:", err);
+                });
               }
             };
         
-            // Intercept the very first tap ONLY for fullscreen
-            const handleFirstTouch = (e) => {
+            const startGame = () => {
+              enterFullscreen();
+              overlay.style.display = "none";
+              canv.focus(); // just in case
+            };
+        
+            overlay.addEventListener("touchstart", (e) => {
               e.preventDefault();
-              if (!hasEnteredFullscreen) {
-                enterFullscreen();
-                // Delay game input just long enough to avoid issues
-                setTimeout(() => {
-                  canvas.removeEventListener("touchstart", handleFirstTouch);
-                  // Let future touches go to game logic as normal
-                }, 300); // slight buffer to let fullscreen apply
-              }
-            };
+              startGame();
+            }, { passive: false });
         
-            canvas.addEventListener("touchstart", handleFirstTouch, { passive: false });
-          // };
+            overlay.addEventListener("click", (e) => {
+              e.preventDefault();
+              startGame();
+            }, { passive: false });
         </script>
 
 <!--         <script>
