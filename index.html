@@ -153,14 +153,22 @@
             }, { passive: false });
         </script> -->
 
-<!--         <script>
-        const canv = document.getElementById("canvas");
-        canv.addEventListener("touchstart", e => {
-            e.preventDefault();
-            canv.requestFullscreen?.().catch(() => {});
-        }, { passive: false });
-        </script> -->
-        
+        <script>
+            const canv = document.getElementById("canvas");
+                
+            canv.addEventListener("touchstart", e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, { passive: false });
+                
+            canv.addEventListener('pointerdown', e => {
+              e.preventDefault();
+              e.stopPropagation();
+            }, { passive: false });
+
+        </script>
+
+
     </body>
 
     <!-- Custom PostBody code is injected here -->
